@@ -59,7 +59,7 @@ configure_sshd() {
         echo "PermitRootLogin yes"
         echo "PasswordAuthentication yes"
         echo "PubkeyAuthentication yes"
-        echo "AuthorizedKeysFile /kaggle/working/.ssh/authorized_keys"
+        echo "AuthorizedKeysFile /kaggle/working/.ssh/authorized_keys .ssh/authorized_keys" # 兼顾统一密钥和用户自己的密钥
         echo "TCPKeepAlive yes"
         echo "X11Forwarding yes"
         echo "X11DisplayOffset 10"

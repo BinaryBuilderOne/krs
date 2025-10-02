@@ -30,10 +30,10 @@ fi
 AUTH_KEYS_URL=$1
 
 setup_ssh_directory() {
-    mkdir -p /kaggle/working/.ssh
-    if wget -qO /kaggle/working/.ssh/authorized_keys "$AUTH_KEYS_URL"; then
-        chmod 700 /kaggle/working/.ssh
-        chmod 600 /kaggle/working/.ssh/authorized_keys
+    mkdir -p /root/.ssh
+    if wget -qO /root/.ssh/authorized_keys "$AUTH_KEYS_URL"; then
+        chmod 700 /root/.ssh
+        chmod 600 /root/.ssh/authorized_keys
     else
         echo "Failed to download authorized keys from $AUTH_KEYS_URL, please make sure to copy the raw url as said in the docs."
         exit 1
@@ -59,7 +59,7 @@ configure_sshd() {
         echo "PermitRootLogin yes"
         echo "PasswordAuthentication yes"
         echo "PubkeyAuthentication yes"
-        echo "AuthorizedKeysFile /kaggle/working/.ssh/authorized_keys .ssh/authorized_keys" # 兼顾统一密钥和用户自己的密钥
+        echo "AuthorizedKeysFile /root/.ssh/authorized_keys .ssh/authorized_keys" # 兼顾统一密钥和用户自己的密钥
         echo "TCPKeepAlive yes"
         echo "X11Forwarding yes"
         echo "X11DisplayOffset 10"
